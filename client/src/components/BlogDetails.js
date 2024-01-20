@@ -28,7 +28,7 @@ const BlogDetails = ({ blog }) => {
               <h1 className="text-xl font-bold leading-6 mb-1">{blog.title}</h1>
               <h2 className="text-sm">{blog.author}</h2>
               <h2 className="text-sm opacity-75">
-                {format.relativeTime(new Date(blog.updatedAt))}
+                {format.relativeTime(new Date(blog.updatedAt), { numeric: "auto" })}
               </h2>
             </div>
 
