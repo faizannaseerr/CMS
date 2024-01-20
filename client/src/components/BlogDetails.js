@@ -1,6 +1,6 @@
 import React from "react";
 // import useBlogsContext from "../hooks/useBlogsContext";
-import formatDistancetoNow from "date-fns/formatDistancetoNow";
+// import formatDistancetoNow from "date-fns/formatDistancetoNow";
 import { Link } from "react-router-dom";
 
 const BlogDetails = ({ blog }) => {
@@ -26,9 +26,9 @@ const BlogDetails = ({ blog }) => {
               <h1 className="text-xl font-bold leading-6 mb-1">{blog.title}</h1>
               <h2 className="text-sm">{blog.author}</h2>
               <h2 className="text-sm opacity-75">
-                {formatDistancetoNow(new Date(blog.updatedAt), {
+                {/* {formatDistancetoNow(new Date(blog.updatedAt), {
                   addSuffix: true,
-                })}
+                })} */}
               </h2>
             </div>
 
