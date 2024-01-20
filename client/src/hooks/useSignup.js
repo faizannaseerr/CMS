@@ -10,7 +10,7 @@ export const useSignup = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch("/signup", {
+    const response = await fetch("https://cmsback.vercel.app/signup", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({ username, password }),
