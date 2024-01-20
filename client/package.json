@@ -23,6 +23,7 @@
     "@tiptap/extension-typography": "^2.1.12",
     "@tiptap/extension-underline": "^2.1.12",
     "@tiptap/pm": "^2.1.12",
+    "date-fns": "^2.30.0",
     "@tiptap/react": "^2.1.12",
     "@tiptap/starter-kit": "^2.1.12",
     "framer-motion": "^10.16.4",
