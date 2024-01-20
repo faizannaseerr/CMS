@@ -1,6 +1,7 @@
 import React from "react";
 // import useBlogsContext from "../hooks/useBlogsContext";
 // import formatDistancetoNow from "date-fns/formatDistancetoNow";
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 const BlogDetails = ({ blog }) => {
@@ -29,6 +30,7 @@ const BlogDetails = ({ blog }) => {
                 {/* {formatDistancetoNow(new Date(blog.updatedAt), {
                   addSuffix: true,
                 })} */}
+                {moment(new Date(blog.updatedAt)).fromNow()}
               </h2>
             </div>
 
