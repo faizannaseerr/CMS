@@ -1,6 +1,6 @@
 import React from "react";
 // import useBlogsContext from "../hooks/useBlogsContext";
-// import formatDistancetoNow from "date-fns/formatDistancetoNow";
+import formatDistancetoNow from "date-fns/formatDistancetoNow";
 import { Link } from "react-router-dom";
 
 const BlogDetails = ({ blog }) => {
