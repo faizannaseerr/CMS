@@ -74,7 +74,7 @@ const EditForm = (blog) => {
       console.log("done nothing");
       return;
     }
-    const response = await fetch("/blogs/" + blog._id + "/edit", {
+    const response = await fetch("https://cmsback.vercel.app/blogs/" + blog._id + "/edit", {
       method: "PATCH",
       body: JSON.stringify(update),
       headers: {

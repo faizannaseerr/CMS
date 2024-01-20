@@ -53,7 +53,7 @@ const BlogForm = () => {
       return;
     }
     const blog = { title, img, text, author, tags };
-    const response = await fetch("/blogs/create", {
+    const response = await fetch("https://cmsback.vercel.app/blogs/create", {
       method: "POST",
       body: JSON.stringify(blog),
       headers: {

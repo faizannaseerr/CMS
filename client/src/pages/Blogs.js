@@ -25,7 +25,7 @@ const Blogs = () => {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const response = await fetch("/blogs", {
+      const response = await fetch("https://cmsback.vercel.app/blogs", {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       const json = await response.json();

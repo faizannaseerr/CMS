@@ -32,7 +32,7 @@ const BlogScreen = () => {
       // setError("You must be logged in");
       return;
     }
-    const response = await fetch("/blogs/" + blog._id, {
+    const response = await fetch("https://cmsback.vercel.app/blogs/" + blog._id, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${user.token}` },
     });
