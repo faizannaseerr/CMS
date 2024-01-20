@@ -1,0 +1,14 @@
+import { BlogsContext } from "../context/BlogContext";
+import { useContext } from "react";
+
+const useBlogsContext = () => {
+  const context = useContext(BlogsContext);
+
+  if (!context) {
+    throw Error("useBlogsContext must be used inside a BlogsContextProvider");
+  }
+
+  return context;
+};
+
+export default useBlogsContext;
