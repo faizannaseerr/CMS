@@ -10,7 +10,7 @@ export const useLogin = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch("/", {
+    const response = await fetch("https://cmsback.vercel.app/", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({ username, password }),
