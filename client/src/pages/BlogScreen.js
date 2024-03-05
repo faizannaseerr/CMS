@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useBlogsContext from "../hooks/useBlogsContext";
 import parse from "html-react-parser";
 import { motion } from "framer-motion";
@@ -26,21 +26,26 @@ const BlogScreen = () => {
   const { dispatch } = useBlogsContext();
   const { user } = useAuthContext();
   const location = useLocation();
+  const navigate = useNavigate();
   const blog = location.state;
   const handleClick = async () => {
     if (!user) {
       // setError("You must be logged in");
       return;
     }
-    const response = await fetch("https://cmsback.vercel.app/blogs/" + blog._id, {
-      method: "DELETE",
-      headers: { Authorization: `Bearer ${user.token}` },
-    });
+    const response = await fetch(
+      "https://cmsback.vercel.app/blogs/" + blog._id,
+      {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${user.token}` },
+      }
+    );
 
     const json = await response.json();
 
     if (response.ok) {
       dispatch({ type: "DELETE_BLOGS", payload: json });
+      navigate("/blogs");
     }
   };
 
@@ -120,19 +125,18 @@ const BlogScreen = () => {
           </motion.div>
           {/* need to style this */}
         </Link>
-        <Link to="/blogs">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-            onClick={handleClick}
-            className="text-center justify-center items-center font-bold text-gray-50 rounded-2xl mb-20 w-[10rem] transition-all py-3 hover:w-[20rem] bg-red-700 hover:bg-red-600 duration-500"
-          >
-            Delete
-          </motion.div>
-          {/* need to style this */}
-        </Link>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6 }}
+          onClick={handleClick}
+          className="text-center justify-center items-center font-bold text-gray-50 rounded-2xl mb-20 w-[10rem] transition-all py-3 hover:w-[20rem] bg-red-700 hover:bg-red-600 duration-500"
+        >
+          Delete
+        </motion.div>
+        {/* need to style this */}
       </div>
     </div>
   );

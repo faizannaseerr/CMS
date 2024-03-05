@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import parse from "html-react-parser";
 import TextEditor from "./RichTextEditor/TextEditor";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useBlogsContext from "../hooks/useBlogsContext";
 import { motion } from "framer-motion";
 import useAuthContext from "../hooks/useAuthContext";
@@ -14,6 +14,7 @@ const BlogForm = () => {
   const [tags, setTags] = useState([]);
   const [text, setText] = useState("");
   const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   const titleChange = (e) => {
     setTitle(e.target.value);
@@ -69,6 +70,7 @@ const BlogForm = () => {
     }
     if (response.ok) {
       dispatch({ type: "CREATE_BLOG", payload: json });
+      navigate("/blogs");
     }
   };
 
@@ -147,18 +149,16 @@ const BlogForm = () => {
         <TextEditor setText={setText} content="" />
       </motion.div>
 
-      <Link to="/blogs">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          onClick={handleClick}
-          className="text-center justify-center items-center font-bold bg-slate-900 text-gray-50 rounded-2xl mx-auto mb-20 max-w-[10rem] transition-all py-3 hover:max-w-[20rem] mt-10 hover:bg-slate-800 duration-500"
-        >
-          Submit
-        </motion.div>
-        {/* need to style this */}
-      </Link>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        onClick={handleClick}
+        className="text-center justify-center items-center font-bold bg-slate-900 text-gray-50 rounded-2xl mx-auto mb-20 max-w-[10rem] transition-all py-3 hover:max-w-[20rem] mt-10 hover:bg-slate-800 duration-500"
+      >
+        Submit
+      </motion.div>
+      {/* need to style this */}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import parse from "html-react-parser";
 import TextEditor from "./RichTextEditor/TextEditor";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import useAuthContext from "../hooks/useAuthContext";
 
@@ -12,6 +12,7 @@ const EditForm = (blog) => {
   const [tags, setTags] = useState([...blog.tags]);
   const [text, setText] = useState(`${blog.text}`);
   const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   const createUpdateBlogObject = () => {
     let update = {};
@@ -74,14 +75,17 @@ const EditForm = (blog) => {
       console.log("done nothing");
       return;
     }
-    const response = await fetch("https://cmsback.vercel.app/blogs/" + blog._id + "/edit", {
-      method: "PATCH",
-      body: JSON.stringify(update),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+    const response = await fetch(
+      "https://cmsback.vercel.app/blogs/" + blog._id + "/edit",
+      {
+        method: "PATCH",
+        body: JSON.stringify(update),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
 
     const json = await response.json();
 
@@ -90,6 +94,7 @@ const EditForm = (blog) => {
     }
     if (response.ok) {
       console.log("okay");
+      navigate("/blogs");
     }
   };
 
@@ -176,18 +181,16 @@ const EditForm = (blog) => {
         <TextEditor setText={setText} content={blog.text} />
       </motion.div>
 
-      <Link to="/blogs">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          onClick={handleClick}
-          className="text-center justify-center items-center font-bold bg-slate-900 text-gray-50 rounded-2xl mx-auto mb-20 max-w-[10rem] transition-all py-3 hover:max-w-[20rem] mt-10 hover:bg-slate-800 duration-500"
-        >
-          Update
-        </motion.div>
-        {/* need to style this */}
-      </Link>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        onClick={handleClick}
+        className="text-center justify-center items-center font-bold bg-slate-900 text-gray-50 rounded-2xl mx-auto mb-20 max-w-[10rem] transition-all py-3 hover:max-w-[20rem] mt-10 hover:bg-slate-800 duration-500"
+      >
+        Update
+      </motion.div>
+      {/* need to style this */}
     </div>
   );
 };
