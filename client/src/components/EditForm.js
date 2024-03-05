@@ -186,7 +186,7 @@ const EditForm = (blog) => {
         whileInView={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
         onClick={handleClick}
-        className="text-center justify-center items-center font-bold bg-slate-900 text-gray-50 rounded-2xl mx-auto mb-20 max-w-[10rem] transition-all py-3 hover:max-w-[20rem] mt-10 hover:bg-slate-800 duration-500"
+        className="text-center justify-center cursor-pointer items-center font-bold bg-slate-900 text-gray-50 rounded-2xl mx-auto mb-20 max-w-[10rem] transition-all py-3 hover:max-w-[20rem] mt-10 hover:bg-slate-800 duration-500"
       >
         Update
       </motion.div>

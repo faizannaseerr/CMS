@@ -119,7 +119,7 @@ const BlogScreen = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="text-center justify-center items-center font-bold text-gray-50 rounded-2xl mb-20 w-[10rem] transition-all py-3 hover:w-[20rem] bg-cyan-950 hover:bg-cyan-900 duration-500"
+            className="text-center cursor-pointer justify-center items-center font-bold text-gray-50 rounded-2xl mb-20 w-[10rem] transition-all py-3 hover:w-[20rem] bg-cyan-950 hover:bg-cyan-900 duration-500"
           >
             Edit
           </motion.div>
@@ -132,7 +132,7 @@ const BlogScreen = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
           onClick={handleClick}
-          className="text-center justify-center items-center font-bold text-gray-50 rounded-2xl mb-20 w-[10rem] transition-all py-3 hover:w-[20rem] bg-red-700 hover:bg-red-600 duration-500"
+          className="text-center cursor-pointer justify-center items-center font-bold text-gray-50 rounded-2xl mb-20 w-[10rem] transition-all py-3 hover:w-[20rem] bg-red-700 hover:bg-red-600 duration-500"
         >
           Delete
         </motion.div>
