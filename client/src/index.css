@@ -10,6 +10,10 @@
   }
 }
 
+html {
+  zoom: 0.9;
+}
+
 ::selection {
   background: #cc785c80;
 }
