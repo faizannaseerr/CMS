@@ -14,7 +14,7 @@ const MenuBar = ({ editor }) => {
   return (
     <>
       <Paper
-        className="max-w-fit mx-auto items-center justify-center"
+        className="max-w-fit mx-auto items-center justify-center z-10"
         elevation={1}
         sx={{
           display: "flex",
