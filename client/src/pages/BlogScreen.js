@@ -78,14 +78,14 @@ const BlogScreen = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
         src={blog.img}
-        className="h-full rounded-xl max-w-[45rem] min-w-[45rem] mb-16 ml-auto mr-auto"
+        className="h-full rounded-xl max-w-[50rem] min-w-[50rem] mb-16 ml-auto mr-auto"
         alt={blog.title}
       />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className="max-w-[45rem] ml-auto mr-auto mt-10 text-start justify-start [&_*]:my-6"
+        className="max-w-[50rem] ml-auto mr-auto mt-10 text-start justify-start [&_*]:my-6"
       >
         {parse(blog.text)}
       </motion.div>

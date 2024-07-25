@@ -26,6 +26,13 @@ const Home = () => {
     //   }
     // }
   };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleClick();
+    }
+  };
+
   return (
     // mt-32
     <div className="mt-24 mb-[20rem] text-center">
@@ -55,6 +62,7 @@ const Home = () => {
             onChange={(e) => {
               setUsername(e.target.value);
             }}
+            onKeyDown={handleKeyPress}
             placeholder="e.g. FaizanN"
             className="bg-gray-50 py-3 px-4 border-[1px] mb-6 border-[#889397] focus:shadow-[0px_0px_0px_3px_rgba(232,236,235)] focus:outline-none rounded-md active:outline-none"
           ></input>
@@ -64,6 +72,7 @@ const Home = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
+            onKeyDown={handleKeyPress}
             type="password"
             className="bg-gray-50 py-3 px-4 border-[1px] border-[#889397] rounded-md focus:shadow-[0px_0px_0px_3px_rgba(232,236,235)] focus:outline-none"
             placeholder="e.g. 123456"

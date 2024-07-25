@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import BlogDetails from "../components/BlogDetails";
 import useAuthContext from "../hooks/useAuthContext";
+import { io } from "socket.io-client"
 
 const fadeInAnimationVariants = {
   initial: {
@@ -22,6 +23,22 @@ const fadeInAnimationVariants = {
 const Blogs = () => {
   const { blogs, dispatch } = useBlogsContext();
   const { user } = useAuthContext();
+
+  useEffect(() => {
+    const socket = io("http://localhost:4000")
+    socket.on("connect", () => {
+      console.log(`You are connected with id: ${socket.id}`)
+      if (user.user.collaborators.length !== 0) {
+        user.user.collaborators.forEach((room) => {
+          socket.emit("join-main-room", room);
+        })
+      }
+    })
+
+    return () => {
+      socket.off("connect");
+    };
+  }, [user.user.collaborators]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
