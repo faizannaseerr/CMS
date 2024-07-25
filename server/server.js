@@ -45,7 +45,7 @@ const io = new Server(httpServer, {
 })
 
 io.on('connection', (socket) => {
-  // console.log(`New client connected: ${socket.id}`);
+  console.log(`New client connected: ${socket.id}`);
 
   socket.on("join-main-room", room => {
     console.log(`socket ${socket.id} joined room ${room}`)

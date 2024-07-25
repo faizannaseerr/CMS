@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import BlogForm from "../components/BlogForm";
 import { motion } from "framer-motion";
-import { io } from "socket.io-client"
 import useAuthContext from "../hooks/useAuthContext";
-
-
-
-
-
+import getSocket from "../components/socket";
+import { io } from "socket.io-client"
 
 
 const CreateBlog = () => {
@@ -29,7 +25,7 @@ const CreateBlog = () => {
     return () => {
       socket.disconnect();
     };
-  }, [])
+  }, [user.username])
 
 
   const handleKeyPress = async (e) => {

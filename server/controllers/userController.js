@@ -10,11 +10,12 @@ const loginUser = async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await User.login(username, password);
+    const collaborators = user.collaborators
 
     // create a token
     const token = createToken(user._id);
 
-    res.status(200).json(user);
+    res.status(200).json({ username, token, collaborators });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -40,7 +41,7 @@ const addCollaborator = async (req, res) => {
   try {
     const subUser = await User.findOne({ username: subCollaborator });
     if (!subUser) {
-      return res.status(404).json({ error: "No such blog" });
+      return res.status(404).json({ error: "No such user" });
     }
     if (subUser.collaborators.includes(mainCollaborator)) {
       return res.status(404).json({ error: "Already a collaborator" })
