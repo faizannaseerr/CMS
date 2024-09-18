@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import BlogDetails from "../components/BlogDetails";
 import useAuthContext from "../hooks/useAuthContext";
-// import getSocket from '../components/socket'
+import getSocket from '../components/socket'
 import { io } from "socket.io-client"
 
 const fadeInAnimationVariants = {
@@ -28,18 +28,15 @@ const Blogs = () => {
 
   useEffect(() => {
     const socket = io("http://localhost:4000")
-    socket.on("connect", () => {
-      console.log(`You are connected with id: ${socket.id}`)
-      if (user.collaborators && user.collaborators.length !== 0) {
-        setCollab(true)
-        user.collaborators.forEach((room) => {
-          socket.emit("join-main-room", room);
-        })
-      }
-    })
+    if (user.collaborators && user.collaborators.length !== 0) {
+      setCollab(true)
+      user.collaborators.forEach((room) => {
+        socket.emit("join-main-room", room);
+      })
+    }
 
     return () => {
-      socket.off("connect");
+      socket.disconnect();
     };
   }, [user.collaborators]);
 

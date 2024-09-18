@@ -5,6 +5,9 @@ import useAuthContext from "../hooks/useAuthContext";
 import getSocket from "../components/socket";
 import { io } from "socket.io-client"
 
+// gets state variable of none or room name, if room name that means subcollaber and so no need to have addCollab button or submit
+// else have both those things (additonally if room name then no need to join its own room, else join own room to)!!!
+// if room name that is also passed on to editor to send back to server to updating text changes
 
 const CreateBlog = () => {
   const [collaborate, setCollaborate] = useState(false)
@@ -12,20 +15,6 @@ const CreateBlog = () => {
   const [errorMessage, setErrorMessage] = useState("")
   const [collaborator, setCollaborator] = useState("")
   const { user } = useAuthContext();
-
-  useEffect(() => {
-    const socket = io("http://localhost:4000")
-    socket.on("connect", () => {
-      console.log(`You are connected with id: ${socket.id}`)
-      socket.emit("join-main-room", user.username)
-    })
-
-
-
-    return () => {
-      socket.disconnect();
-    };
-  }, [user.username])
 
 
   const handleKeyPress = async (e) => {

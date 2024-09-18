@@ -158,6 +158,7 @@ const BlogForm = () => {
       >
         Submit
       </motion.div>
+      {/* when this is done, collaborators need to be removed and should also leave room */}
       {/* need to style this */}
     </div>
   );

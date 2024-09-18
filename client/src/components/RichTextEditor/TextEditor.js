@@ -1,4 +1,5 @@
 import MenuBar from "./MenuBar";
+import { useEffect, useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import UnderlineExtension from "@tiptap/extension-underline";
@@ -10,8 +11,27 @@ import TextAlign from "@tiptap/extension-text-align";
 import Focus from "@tiptap/extension-focus";
 import Heading from "@tiptap/extension-heading";
 import Placeholder from "@tiptap/extension-placeholder";
+import io from "socket.io-client"
+import useAuthContext from "../../hooks/useAuthContext";
 
 export default function TextEditor({ setText, content }) {
+  const { user } = useAuthContext()
+  const [socket, setSocket] = useState(null)
+
+
+
+
+  useEffect(() => {
+    const s = io("http://localhost:4000")
+    setSocket(s)
+    // const socket = io("http://localhost:4000")
+    s.emit("join-main-room", user.username)
+
+    return () => {
+      s.disconnect();
+    };
+  }, [])
+
   const editor = useEditor({
     content: content,
     extensions: [
@@ -44,8 +64,26 @@ export default function TextEditor({ setText, content }) {
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
       setText(html);
+      if (socket) {
+        socket.emit("send-changes", html, "second") // hard coded room name but that is passed down from createBlog
+      }
     },
   });
+
+  // useEffect(() => {
+  //   if (!editor) {
+  //     return
+  //   }
+  //   editor.on('update', ({ editor }) => {
+  //     console.log("form changing")
+  //   })
+
+  //   return () => {
+  //     editor.off('update', ({ editor }) => {
+  //       console.log("form changing")
+  //     })
+  //   }
+  // }, [editor])
 
   return (
     <>

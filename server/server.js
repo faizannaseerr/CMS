@@ -52,6 +52,10 @@ io.on('connection', (socket) => {
     socket.join(room)
   })
 
+  socket.on("send-changes", (html, room) => {
+    console.log(html, room)
+    // socket.broadcast.to(room).emit(html)
+  })
 
 });
 
